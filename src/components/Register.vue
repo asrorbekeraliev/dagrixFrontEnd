@@ -1,12 +1,11 @@
 <template>
   <div class="registerPage">
-    <ExternalHeader/>
+    <!-- <ExternalHeader/> -->
     <div class="container">
-      <div class="row">
         <div class="col"></div>
         <div class="col-5">
             <form @submit.prevent="handleSubmit" style="margin-top: 20%; padding: 30px; border-radius: 10px; backdrop-filter:blur(10px) brightness(150%) contrast(90%); ">
-              <h1 style="color: white;">SIGN UP</h1>
+              <h1 style="color: white; font-family: goodTimes">SIGN UP</h1>
               <div class="form-group">
                 <label style="color: white; float: left">First Name</label>
                 <input type="text" required class="form-control" v-model="first_name" placeholder="Enter First Name"/>
@@ -44,19 +43,18 @@
             </form>
         </div>
         <div class="col"></div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import ExternalHeader from "@/components/layout/ExternalHeader";
+// import ExternalHeader from "@/components/layout/ExternalHeader";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: 'Register',
-  components: {ExternalHeader},
+  // components: {ExternalHeader},
   data() {
     return{
       first_name: '',
@@ -108,4 +106,11 @@ export default {
 .form-group{
   padding-bottom: 5%;
 }
+.container{
+  display: flex
+}
+@font-face {
+                font-family: goodTimes;
+                src: url("../fonts/good times rg.otf");
+            }
 </style>

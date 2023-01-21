@@ -2,13 +2,20 @@
   <div class="homePage">
     <div class="container">
       <div class="bir">
-        <img src="../assets/dagrix.png" width="50%">
-        <p>DIGITAL AGRICULTURE EXPLORATIONS</p>
-        <p>VISION FOR THE FUTURE:</p>
-        <p>TRANSITION TO DIGITAL AGRICULTURE</p>
+        <div class="leftside">          
+          <img src="../assets/dagrix.png" width="80%">
+          <p id="dagrix">DIGITAL AGRICULTURE EXPLORATIONS</p>          
+        </div>
+      </div>
+      <div class="frame">
+        <img src="../assets/sep.png" height="100%">
       </div>
       <div class="ikki">
-        <Login/>
+        <div>
+          <Login/>
+          <p style="margin-top: 10%; color: white; font-family: goodTimes; opacity: 1.2;">Not registered yet? <a href="/register">Register</a></p>
+          
+        </div>
       </div>
     </div>
   </div>  
@@ -41,28 +48,63 @@ export default {
 <style scoped>
 .homePage{
     height: 100vmin;
+    max-width: 100%;
     float: top;
     vertical-align: top;
     background-image: url("../assets/earthBackground.jpg");
     background-size: 100%;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat;    
   }
   .container{
     display: flex;
     justify-content: center;
-    justify-items: center;
     flex-wrap: wrap;
-    text-align: center;
+    max-width: 100%;
+    align-items: center;
   }
   .container > div{
-    width: 50w
     margin: auto;
-    border: solid 1px red;
     height: 100vmin;
-    padding-top: 25%;
+    align-items: center;
+    display: flex;
+  }
+  .bir{
+    width: 50%;
+  }
+  .frame{
+    width: 10%;
   }
   .ikki{
+    width: 40%;
+    z-index: 15;
     margin: auto;
+    justify-content: center;
+    justify-self: center;
   }
-  
+  #dagrix{
+    color: rgb(255, 255, 255);
+    font-size: 50px;
+    font-family: goodTimes;
+    letter-spacing: 3px;
+  }
+  .leftside > p{
+    color: blue;
+    font-size: xx-large;
+    
+  }
+  .leftside > img{
+    margin-bottom: 5%;
+    transition: 1s;
+  }
+  .leftside > img:hover{
+    transform-style: preserve-3d;
+    transform: scale(1.1);
+    transition: 1s;
+    
+  }
+
+  @font-face {
+                font-family: goodTimes;
+                src: url("../fonts/good times rg.otf");
+            }
 </style>

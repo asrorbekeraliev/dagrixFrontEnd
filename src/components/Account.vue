@@ -37,7 +37,7 @@
                 :center="center"
                 :zoom="6"
                 map-style-id="satellite_labels"
-                map-type="satellite" 
+                map-type-id="satellite" 
                 :options="mapOptions"
                 style="overflow: hidden; height: 100%; margin:auto; z-index: 0;"
                 ref="mapRef"
@@ -170,7 +170,7 @@ export default {
   float: left;
   margin-top: 5%;
   margin-bottom: 5%;
-
+  font-family: goodTimes;
 }
 .card-link{
   text-decoration: none !important;
@@ -200,7 +200,7 @@ export default {
 }
 
 .map:hover{
-  transform: scale(1.15);
+  transform: scale(1.1);
   width: 50%;
   transition: 0.5s;
   box-shadow: 0 19px 38px rgba(255, 255, 255, 0.3), 0 15px 12px rgba(255, 255, 255, 0.22);
@@ -252,5 +252,15 @@ h1{
   color: aliceblue;
   margin-bottom: 1%;
   width: 100%;
+  font-family: goodTimes;
 }
+
+row{
+  font-family: goodTimes;
+}
+
+@font-face {
+                font-family: goodTimes;
+                src: url("../fonts/good times rg.otf");
+            }
 </style>
