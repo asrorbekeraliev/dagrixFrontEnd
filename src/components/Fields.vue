@@ -1,14 +1,14 @@
 <template>
-  <div class="body">
+  <div>
+    <div class="bodyColor"></div>
+    <div class="bodyFon"></div>
     <InternalHeader/>
 
     <div class="container1">
       <div class="registerField">
-        <p>
           <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
             Add a new field
           </button>
-        </p>
         <div class="collapse" id="collapseExample">
           <form>
             <div class="fieldReg">
@@ -18,7 +18,7 @@
               </div>
               <div style="width: auto; ">
 
-                <label style="color: white; margin-right: 15px">Set the moisture Level: </label>
+                <label class="tt" style="color: white; margin-right: 15px">Set the moisture Level: </label>
                 <input type="range" v-model="registerData.settedMoistureLevel">
                 <span style="color: white; margin-left: 15px">{{registerData.settedMoistureLevel}}%</span>
               </div>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="table">
-        <p style="float: right; color: white; font-weight: bold">* SML = Soil Moisture Level</p>
+        <p class="pteg" style="float: right; color: white; font-weight: bold; margin-bottom: 0">* SML = Soil Moisture Level</p>
         <table class="table table-dark" style="margin-top: 3%; width: 100%;">
           <thead style="color: #5EE2EC">
           <tr>
@@ -49,7 +49,7 @@
             <td>{{field.name}}</td>
             <td>{{field.settedMoistureLevel}}</td>
             <td>unknown</td>
-            <td><router-link :to="{name: 'Charts', params: {nodeId: field.id}}"><img src="../assets/graph.png" style="width: 50px;"></router-link></td>
+            <td><router-link :to="{name: 'Charts', params: {nodeId: field.id}}"><img class="chart" src="../assets/graph.png" style="width: 50px;"></router-link></td>
             <td><button type="button" class="btn btn-danger" @click="deleteField(field.id)">Delete</button></td>
           </tr>
           </tbody>
@@ -104,12 +104,9 @@ export default {
 </script>
 
 <style scoped>
-  .body{
-    height: 800px;
-    width: 100%;
-    background-image: linear-gradient(to right, #8b005f, #ac0bd0, #59c259, #7925c9,#451077);
-
-  }
+.btn-primary{
+  margin-bottom: 30px;
+}
   .container1{
     display: flex;
     justify-content: center;
@@ -122,6 +119,7 @@ export default {
   .fieldReg{
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     align-self: end;
     width: 100%;
     margin-bottom: 20px;
@@ -134,5 +132,60 @@ export default {
     width: 80%;
     justify-content: right;
     text-align: center;
+  }
+
+  .bodyColor{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(6, 0, 128);
+    opacity: 0.5;
+    z-index: -10;
+  }
+
+  .bodyFon{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../assets/fields.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -50;
+  }
+  @media screen and (max-width: 800px){
+    .btn-primary{
+      font-size: xx-small;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .tt{
+      margin-top: 15px;
+    }
+    table{
+      width: 80%;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+    th, td{
+      font-size: x-small;
+    }
+    .chart{
+      height: 20px;
+      width: 30px !important;
+    }
+    .btn-danger{
+      font-size: x-small;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    .pteg{
+      font-size: x-small !important;
+      margin-bottom: 0;
+      float: right;
+      padding: 0;
+      margin-right: 0;
+    }
   }
 </style>

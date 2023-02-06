@@ -1,11 +1,13 @@
 <template>
     <div class="users">
+      <div class="bodyColor"></div>
+      <div class="bodyFon"></div>
         <InternalHeader/>
         <div class="container">          
             <div class="row">
               <div class="col"></div>
               <div class="col-12">
-                <table class="table table-dark" style="margin-top: 3%; min-height: 500px">
+                <table class="table table-dark" style="margin-top: 3%;">
                   <thead style="color: #5EE2EC">
                     <tr>
                       <th scope="col">#</th>
@@ -23,7 +25,7 @@
                       <td>{{user.login}}</td>
                       <td>{{user.name}}</td>
                       <td>{{user.lastName}}</td>
-                      <td><button type="button" class="btn btn-danger" @click="deleteUser(user.id)">Delete User</button></td>
+                      <td><button type="button" class="btn btn-danger" @click="deleteUser(user.id)">Delete</button></td>
                     </tr>
                   </tbody>
               </table>
@@ -70,12 +72,44 @@ export default {
 }
 </script>
 <style scoped>
-.users{
-    height: 1200px;
-    float: top;
-    vertical-align: top;
-    background-image: url("../assets/earth.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
+
+.bodyColor{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(6, 0, 128);
+  opacity: 0.3;
+  z-index: -10;
+}
+
+.bodyFon{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../assets/earth.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -50;
+}
+
+@media screen and (max-width: 800px){
+  .container{
+    width: 100%;
+    margin: 2px;
   }
+  .users{
+    width: 100vw;
+    background-size: cover;
+  }
+  th, td{
+    font-size: x-small;
+  }
+  button{
+    font-size: x-small;
+    padding: 1px 2px !important;
+    border-radius: 2px;
+  }
+}
+
 </style>

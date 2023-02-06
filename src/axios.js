@@ -1,7 +1,7 @@
 import axios from "axios";
 window.axios = axios
-//axios.defaults.baseURL = 'http://backend.dottore.uz/api/';
-axios.defaults.baseURL = 'http://localhost:8081/api/';
+axios.defaults.baseURL = 'http://backend.dottore.uz/api/';
+//axios.defaults.baseURL = 'http://localhost:8081/api/';
 
 // default holatda token yaratib olish
 let token;

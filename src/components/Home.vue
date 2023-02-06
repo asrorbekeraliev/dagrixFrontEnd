@@ -13,7 +13,7 @@
       <div class="ikki">
         <div>
           <Login/>
-          <p style="margin-top: 10%; color: white; font-family: goodTimes; opacity: 1.2;">Not registered yet? <a href="/register">Register</a></p>
+          <p class="register">Not registered yet? <a href="/register">Register</a></p>
           
         </div>
       </div>
@@ -47,12 +47,12 @@ export default {
 
 <style scoped>
 .homePage{
-    height: 100vmin;
-    max-width: 100%;
+    height: auto;
+    width: fit-content;
     float: top;
     vertical-align: top;
     background-image: url("../assets/earthBackground.jpg");
-    background-size: 100%;
+    background-size: cover;
     background-repeat: no-repeat;    
   }
   .container{
@@ -67,6 +67,7 @@ export default {
     height: 100vmin;
     align-items: center;
     display: flex;
+    justify-content: center;
   }
   .bir{
     width: 50%;
@@ -80,6 +81,9 @@ export default {
     margin: auto;
     justify-content: center;
     justify-self: center;
+  }
+  .register{
+    margin-top: 10%; color: white; font-family: goodTimes; opacity: 1.2;
   }
   #dagrix{
     color: rgb(255, 255, 255);
@@ -107,4 +111,33 @@ export default {
                 font-family: goodTimes;
                 src: url("../fonts/good times rg.otf");
             }
+  @media screen and (max-width: 800px){
+    .frame{
+      width: 0;
+    }
+    .frame > img{
+      display: none;
+    }
+    .bir{
+      width: 95%;
+    }
+    .leftside{
+      width: 80%;
+    }
+    #dagrix{
+      font-size: 20px;
+    }
+    .ikki{
+      width: 95%;
+      justify-content: center;
+    }
+    .register{
+      margin-bottom: 40px;
+      font-size: small;
+    }
+    .homePage{
+    }
+
+
+  }
 </style>

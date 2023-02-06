@@ -3,7 +3,7 @@
   <div class="bodyColor"></div>
   <div class="bodyFon"></div>
   <div class="accountPage">
-    <InternalHeader/>   
+    <div class="header"><InternalHeader/></div>
       <div class="tashqi">
         <div class="sidebar">
           <div class="card" style="background-color: transparent; backdrop-filter: blur(px);">
@@ -24,7 +24,7 @@
                 <a href="/wirelessdevices" class="card-link"><span class="cardScripts">Devices</span></a>
               </div>
               <div class="row">
-                <a href="#" class="card-link"><span class="cardScripts">Configurations</span></a>
+                <a href="#" class="card-link"><span class="cardScripts">Settings</span></a>
               </div>
               
             </div>
@@ -35,11 +35,11 @@
           <div class="map">
             <GmapMap
                 :center="center"
-                :zoom="6"
+                :zoom="4"
                 map-style-id="satellite_labels"
                 map-type-id="satellite" 
                 :options="mapOptions"
-                style="overflow: hidden; height: 100%; margin:auto; z-index: 0;"
+                style="overflow: hidden; height: 100%;z-index: 0;"
                 ref="mapRef"
                 >
                 <gmap-custom-marker 
@@ -65,8 +65,6 @@
 
           </div>
         </div>
-
-
       </div>
   </div>
 </div>  
@@ -183,7 +181,8 @@ export default {
 .cardScripts{
   float: left;
   margin-top: 5%;
-  margin-bottom: 5%;
+  margin-bottom: 15%;
+  margin-left: 10%;
   font-family: goodTimes;
   width: fit-content;
 }
@@ -285,4 +284,38 @@ row{
                 font-family: goodTimes;
                 src: url("../fonts/good times rg.otf");
             }
+@media screen and (max-width: 800px){
+  h1{
+    font-size: small;
+    margin-bottom: -10%;
+  }
+  .accountPage{
+    width: 100%;
+  }
+  .row > a {
+    font-size: 8px;
+    padding-bottom: 5px;
+    margin-left: -9%;
+  }
+  .sidebar{
+    width: 20%;
+  }
+  .mainview{
+    display: flex;
+  }
+  .map{
+    margin: 0;
+    width: 100%;
+    height: 40%;
+  }
+  .charts{
+    margin: 0;
+    width: 100%;
+    height: 40%;
+  }
+  .sidebar{
+    margin-top: 15%;
+  }
+
+}
 </style>

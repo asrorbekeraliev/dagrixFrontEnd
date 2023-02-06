@@ -1,30 +1,30 @@
 <template>
-  
     <div class="tashqi">
-      <div>
-        <img src="../../assets/dagrix.png" @click="goHome()">
+      <div class="logo">
+        <img id="rasm" src="../../assets/dagrix.png" @click="goHome()">
       </div>
-      <div>
+      <div class="bir">
         <nav class="navbar navbar-expand-lg bg-light" id="info">
           <a class="navbar-brand" style="margin: auto;"> USERS: {{this.numberOfUsers}}</a><img src="../../assets/users.png" style="width: 2rem; margin: auto">
         </nav>
       </div>
-      <div>
+      <div class="ikki">
         <nav class="navbar navbar-expand-lg bg-light" id="info">
           <a class="navbar-brand" style="margin: auto;">DEVICES: {{this.numberOfDevices}}</a><img src="../../assets/deviceico.png" style="width: 2rem; margin: auto">
         </nav>
       </div>
-        <div class="dropdown">
-          <button type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent !important; border-color: transparent; margin: auto">
-            <img src="../../assets/icons8-user-64.png" width="42">
-          </button>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" style="background-color: rgb(59, 56, 69) !important; border-color: white;">
-            <li><a class="dropdown-item disabled" style="color: white !important;">Hi, {{this.name}}</a></li>
-            <div class="dropdown-divider" style="color: white !important"></div>
-            <li><a class="dropdown-item" href="/profile">Profile Settings</a></li>
-            <li><a class="dropdown-item" @click="logOut" href="">Log Out</a></li>
-          </ul>
-        </div>
+      <div class="dropdown">
+        <button type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent !important; border-color: transparent; margin: auto">
+          <img src="../../assets/icons8-user-64.png" width="42">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" style="background-color: rgb(59, 56, 69) !important; border-color: white;">
+          <li><a class="dropdown-item disabled" style="color: white !important;">Hi, {{this.name}}</a></li>
+          <div class="dropdown-divider" style="color: white !important"></div>
+          <li><a class="dropdown-item" href="/profile">Profile Settings</a></li>
+          <li><a class="dropdown-item" @click="logOut" href="">Log Out</a></li>
+        </ul>
+      </div>
+
     </div>
 
 
@@ -84,24 +84,30 @@ export default {
 .dropdown > button > img{
   transition-duration: 0.5s;
 }
+.logo{
+
+}
 
 .tashqi{  
   background-color: transparent !important;
   backdrop-filter: blur(10px);
   position: -webkit-sticky;
-   top: 0px;
-   position: sticky;
-z-index: 99999999;
+  top: 0px;
+  position: sticky;
+  z-index: 99999999;
   display: flex; 
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   height: 150px;
 }
 .tashqi > div{
- width: 25%;
+ width: 24%;
  text-align: center;
  z-index: 99999999;
+}
+.logo{
+  width: 25%;
 }
 .tashqi > div > img{
   width: 250px; 
@@ -131,6 +137,34 @@ z-index: 99999999;
             0px 8px 16px rgba(212, 208, 208, 0.1);
   transform: scale(1.1);
 }
+
+@media screen and (max-width: 800px){
+  .tashqi{
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tashqi > div{
+    padding: 0;
+    margin: 0 20px;
+  }
+  .bir, .ikki{
+    width: 0;
+    display: none;
+  }
+  #rasm{
+    width: 130px;
+    float: left;
+  }
+  .dropdown{
+    float: right;
+    width: 100px;
+  }
+  .dropdown > button > img{
+    width: 50%;
+  }
+}
+
 
 
 

@@ -1,17 +1,18 @@
 <template>
     <div class="devicesPage">
+      <div class="bodyColor"></div>
+      <div class="bodyFon"></div>
         <InternalHeader/>
-
         <div class="container">
   <div class="row">
     <div class="col">
-      <div style="width: 30%; border-radius: 20px; backdrop-filter:blur(10px) brightness(150%) contrast(90%); margin: auto">
+      <div class="ustuncha">
         <a href="/deviceregister"><img src="../assets/registerdev.png" style="width: 70%; padding-top: 12%;"></a>
-        <h3 style="color: black; background-color: #328905;">Register a new device</h3>
+        <h3 style="color: black; background-color: #328905;">Register a device</h3>
       </div>
     </div>
     <div class="col">
-      <div style="width: 30%; border-radius: 20px; backdrop-filter:blur(10px) brightness(150%) contrast(90%); margin: auto">
+      <div class="ustuncha">
         <a href=""><img src="../assets/removedev.png" style="width: 70%; padding-top: 12%;"></a>
         <h3 style="color: black; background-color: #b42005;">Delete all devices</h3>
       </div>
@@ -90,15 +91,48 @@ export default {
 }
 </script>
 <style scoped>
-.devicesPage{
-  min-height: 1000px;
-  float: top;
-  vertical-align: top;
+
+.bodyColor{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(6, 0, 128);
+  opacity: 0.5;
+  z-index: -10;
+}
+
+.bodyFon{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
   background-image: url("../assets/devices.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  z-index: -100
+  z-index: -50;
+}
+
+.ustuncha{
+  width: 30%; border-radius: 20px; backdrop-filter:blur(10px) brightness(150%) contrast(90%); margin: auto
+}
+
+@media screen and (max-width: 800px){
+  h3{
+    font-size: x-small;
+  }
+  .ustuncha{
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  th, td{
+    font-size: xx-small;
+  }
+
+  .btn-danger{
+    font-size: x-small;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
 }
 
 </style>

@@ -10,7 +10,7 @@
               <h1 style="color: white;">DEVICE REGISTRATION</h1>
               <div class="form-group" style="width: 50vmin; margin:0 auto;">
                 <label style="color: white; float: left">Choose the Field</label>
-                <select class="form-select" v-model="choosenIndex">
+                <select required class="form-select" v-model="choosenIndex">
                   <option selected hidden value=null>Choose the field</option>
                   <option v-for="(field_name, index) in field_names"
                           v-bind:value="index"
@@ -131,7 +131,8 @@ export default {
 
     // Registration submission
     submit(){
-      if(this.device_type != null){
+      if(this.device_type != null && this.choosenIndex != null){
+        console.log(this.choosenIndex)
         const data = {
         deviceType: this.device_type,
         latitude: this.marker.position.lat,
@@ -149,7 +150,7 @@ export default {
             this.$router.push('wirelessdevices');          
         })
       } else {
-        alert("Please, select the Device Type")
+        alert("Please, select the Field and Device Type")
       }     
       
     },

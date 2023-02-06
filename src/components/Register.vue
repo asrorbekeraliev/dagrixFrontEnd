@@ -4,7 +4,7 @@
     <div class="container">
         <div class="col"></div>
         <div class="col-5">
-            <form @submit.prevent="handleSubmit" style="margin-top: 20%; padding: 30px; border-radius: 10px; backdrop-filter:blur(10px) brightness(150%) contrast(90%); ">
+            <form @submit.prevent="handleSubmit" style="">
               <h1 style="color: white; font-family: goodTimes">SIGN UP</h1>
               <div class="form-group">
                 <label style="color: white; float: left">First Name</label>
@@ -36,9 +36,9 @@
                 <input type="date" required class="form-control" v-model="dateOfBirth" placeholder="Enter Date of birth"/>
               </div>
 
-              <div style="margin-top: 25px">
+              <div class="buttons" style="margin-top: 25px">
                 <button class="btn btn-primary btn-block">Sign Up</button>
-                <button class="btn btn-warning btn-block" style="margin-left: 100px" @click="reset">Reset Fields</button>
+                <button class="btn btn-warning btn-block" id="btnn" @click="reset">Reset Fields</button>
               </div>
             </form>
         </div>
@@ -96,21 +96,49 @@ export default {
 
 <style scoped>
 .registerPage{
-  height: 1000px;
+  height: fit-content;
   float: top;
   vertical-align: top;
   background-image: url("../assets/loginbackground.jpg");
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
+}
+form{
+  margin: 20% 0; padding: 30px; border-radius: 10px; backdrop-filter:blur(10px) brightness(150%) contrast(90%);
 }
 .form-group{
   padding-bottom: 5%;
 }
 .container{
-  display: flex
+  display: flex;
+  justify-content: center;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+}
+.buttons > button{
+  margin: 0 20px;
 }
 @font-face {
                 font-family: goodTimes;
                 src: url("../fonts/good times rg.otf");
             }
+@media screen and (max-width: 800px){
+  .container{
+    width: 100%;
+  }
+  .col-5{
+    width: 100%;
+  }
+  form{
+    margin: 2%;
+  }
+  .buttons > button{
+    margin: 0 5px;
+  }
+  .btnn{
+    font-size: 2px !important;
+  }
+}
 </style>
