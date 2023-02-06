@@ -18,7 +18,7 @@
           <button type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent !important; border-color: transparent; margin: auto">
             <img src="../../assets/icons8-user-64.png" width="42">
           </button>
-          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" style="background-color: transparent !important; border-color: white;">
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2" style="background-color: rgb(59, 56, 69) !important; border-color: white;">
             <li><a class="dropdown-item disabled" style="color: white !important;">Hi, {{this.name}}</a></li>
             <div class="dropdown-divider" style="color: white !important"></div>
             <li><a class="dropdown-item" href="/profile">Profile Settings</a></li>

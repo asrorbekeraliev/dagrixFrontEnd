@@ -80,7 +80,7 @@ export default {
       };
       const response = await axios.post('register', data);
       console.log(response)
-      await this.$router.push("login")
+      await this.$router.push("/")
     },
     reset(){
       this.first_name = '',

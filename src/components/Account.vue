@@ -6,7 +6,7 @@
     <InternalHeader/>   
       <div class="tashqi">
         <div class="sidebar">
-          <div class="card" style="background-color: transparent; backdrop-filter: blur(px); border-radius: 1%">
+          <div class="card" style="background-color: transparent; backdrop-filter: blur(px);">
             <div class="card-body">
               <div class="row">
                 <a href="#" class="card-link"><span class="cardScripts">Home</span></a>
@@ -18,7 +18,7 @@
                 <a href="/users" class="card-link"><span class="cardScripts">Users</span></a>
               </div>
               <div class="row">
-                <a href="/users" class="card-link"><span class="cardScripts">Fields</span></a>
+                <a href="/fields" class="card-link"><span class="cardScripts">Fields</span></a>
               </div>
               <div class="row">
                 <a href="/wirelessdevices" class="card-link"><span class="cardScripts">Devices</span></a>
@@ -48,8 +48,7 @@
                 :key="index"
                   v-for="(marker, index) in markers"
                   :position="marker"
-                  @click.native="makeChart(index)"                                 
-                 
+                  @click.native="makeChart(index)"  
                 >
                   <div>
                     <router-link :to="{name: 'Charts', params: {nodeId: device_numbers[index]}}">
@@ -57,10 +56,9 @@
                       <img  src="../assets/reddeviceGIF.gif" style="width: 50px;"/>
                     </router-link>
                   </div>
-                  
-                  
-                
-                </gmap-custom-marker>            
+                </gmap-custom-marker>   
+
+                <gmap-polygon :paths="paths"></gmap-polygon>         
           </GmapMap>
           </div>
           <div class="charts">
@@ -122,6 +120,19 @@ export default {
     makeChart(index){
       console.log(this.device_numbers[index])
       this.$router.push('charts/' + this.device_numbers[index], )
+    },
+
+    addPolygon(){
+      var poly = new gmapApi.maps.Polygon({
+        paths: this.paths,
+        strokeColor: '#FF0000',
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: '#FF0000',
+        fillOpacity: 0.35
+      });
+      console.log(poly);
+      this.$refs.map.$mapObject.data.add({geometry: new gmapApi.maps.Data.Polygon([this.poly])});
     }
 
   },
@@ -133,6 +144,10 @@ export default {
   computed: {
        google: gmapApi
    },
+   mounted() {
+    
+   },
+   
 
 
 
@@ -145,14 +160,12 @@ export default {
   display: flex;
   justify-content: center;
 }
-.row{
-  width: 220%;
-}
+
 .sidebar{
-  width: 20%;
+  width: 22%;
   height: 70vh;
   margin-top: 6%;
-  margin-left: 1%;
+  margin-left: 0%;
   display: flex;
 }
 .mainview{
@@ -165,34 +178,37 @@ export default {
 
 .card-body{
   font-size: x-large;
+  letter-spacing: 1px;
 }
 .cardScripts{
   float: left;
   margin-top: 5%;
   margin-bottom: 5%;
   font-family: goodTimes;
+  width: fit-content;
 }
 .card-link{
   text-decoration: none !important;
   font-size: 1em;
   color: white;
-  padding-left: 10%;
+  padding-left: 7%;
   transition: 0.5s;
 }
 .card-link:hover{
-  box-shadow: 0px 1px 2px rgba(229, 179, 179, 0.1), 
-            0px 2px 4px rgba(230, 185, 185, 0.1), 
-            0px 4px 8px rgba(255, 255, 255, 0.1), 
-            0px 8px 16px rgba(212, 208, 208, 0.1);
+  /*box-shadow: 0px 1px 2px rgba(229, 179, 179, 0.1), */
+  /*          0px 2px 4px rgba(230, 185, 185, 0.1), */
+  /*          0px 4px 8px rgba(255, 255, 255, 0.1), */
+  /*          0px 8px 16px rgba(212, 208, 208, 0.1);*/
   transform: scale(1.1);
   align-items: center;
   color: aqua;
   transition: 0.5s;
+  background-image: linear-gradient(to right, black, transparent);
+
 }
 
 .map{
   transition: 0.5s;
-  border: solid 2px white;
   height: 75%;
   width: 45%;
   z-index: 100;
@@ -201,6 +217,7 @@ export default {
 
 .map:hover{
   transform: scale(1.1);
+  border-color: transparent;
   width: 50%;
   transition: 0.5s;
   box-shadow: 0 19px 38px rgba(255, 255, 255, 0.3), 0 15px 12px rgba(255, 255, 255, 0.22);
@@ -208,13 +225,17 @@ export default {
 }
 
 .charts{
-  background-color: aquamarine;
+  background-color: transparent;
+  border: solid 1px white;
+  border-radius: 5%;
+  transition: 0.5s;
   height: 75%;
   width: 45%;
   margin-left: 2%;
 }
 
 .charts:hover{
+  border-color: transparent;
   transform: scale(1.1);
   transition: 0.5s;
   box-shadow: 0 19px 38px rgba(255, 255, 255, 0.3), 0 15px 12px rgba(255, 255, 255, 0.22);
@@ -223,7 +244,7 @@ export default {
 .bodyColor{
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 130%;
   background: rgb(6, 0, 128);
   opacity: 0.2;
   z-index: -10;
@@ -232,7 +253,7 @@ export default {
 .bodyFon{
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 130%;
   background-image: url("../assets/earthBackground.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -257,6 +278,7 @@ h1{
 
 row{
   font-family: goodTimes;
+  background-color: white;
 }
 
 @font-face {

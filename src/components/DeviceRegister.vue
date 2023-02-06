@@ -9,13 +9,21 @@
             <form @submit.prevent="submit" style="width: 100vmin; margin-top: 10%; padding: 30px; border-radius: 10px; backdrop-filter:blur(10px) brightness(150%) contrast(90%); ">
               <h1 style="color: white;">DEVICE REGISTRATION</h1>
               <div class="form-group" style="width: 50vmin; margin:0 auto;">
+                <label style="color: white; float: left">Choose the Field</label>
+                <select class="form-select" v-model="choosenIndex">
+                  <option selected hidden value=null>Choose the field</option>
+                  <option v-for="(field_name, index) in field_names"
+                          v-bind:value="index"
+                          :key="index">{{ field_name }}</option>
+                </select>
+              </div>
+              <div class="form-group" style="width: 50vmin; margin:0 auto;">
                 <label style="color: white; float: left">Device Type</label>
                 <select class="form-select" v-model="device_type">
                   <option selected hidden value=null>Choose the device type</option>
                   <option value="Coordinator">Coordinator</option>
                   <option value="End Device">End Device</option>
                 </select>
-                
               </div>
               <br>
               <div style="margin-left: -30px">
@@ -74,7 +82,11 @@ export default {
         disableDefaultUI: false,
         scrollwheel: true,
       },
-      device_type: null
+      device_type: null,
+      choosenIndex: null,
+      field_names:[],
+      field_ids:[],
+
     };
   },
 	methods: {
@@ -102,6 +114,21 @@ export default {
       this.marker.position = { lat: e.latLng.lat(), lng: e.latLng.lng() };
       console.log(e);
     },
+
+    // get fields
+    getFields(){
+      axios.get('/field')
+          .then(response=>{
+            console.log(response)
+            for (var i=0; i<response.data.length; i++){
+              this.field_names.push(response.data[i].name)
+              this.field_ids.push(response.data[i].id)
+            }
+            console.log(this.field_names)
+          })
+    },
+
+
     // Registration submission
     submit(){
       if(this.device_type != null){
@@ -109,6 +136,9 @@ export default {
         deviceType: this.device_type,
         latitude: this.marker.position.lat,
         longitude: this.marker.position.lng,
+        field: {
+          id: this.field_ids[this.choosenIndex]
+        }
         };
         console.log(data)
         axios.post('node/register', data)
@@ -130,7 +160,8 @@ export default {
    },
    mounted() {
   //  this.geolocate();
-   }
+     this.getFields();
+   },
 
 }
 </script>
