@@ -9,6 +9,7 @@ import VueRouter from 'vue-router'
 import WirelessDevices from '@/components/WirelessDevices'
 import Charts from '@/components/Charts.vue'
 import Fields from "@/components/Fields.vue";
+import Profile from "@/components/Profile";
 
 Vue.use(VueRouter);
 
@@ -26,7 +27,8 @@ const routes = [
         component: Charts,
         props: true
     },
-    {path: '/fields', component: Fields}
+    {path: '/fields', component: Fields},
+    {path: '/profile', component: Profile}
 
 ]
 

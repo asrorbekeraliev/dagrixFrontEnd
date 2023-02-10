@@ -12,7 +12,7 @@
                 <a href="#" class="card-link"><span class="cardScripts">Home</span></a>
               </div>
               <div class="row">
-                <a href="#" class="card-link"><span class="cardScripts">Profile</span></a>
+                <a href="/profile" class="card-link"><span class="cardScripts">Profile</span></a>
               </div>
               <div class="row">
                 <a href="/users" class="card-link"><span class="cardScripts">Users</span></a>
@@ -66,7 +66,9 @@
           </div>
         </div>
       </div>
+
   </div>
+
 </div>  
 </template>
 
@@ -156,7 +158,6 @@ export default {
 <style scoped>
 .tashqi{
   display: flex;
-  justify-content: center;
 }
 
 .sidebar{

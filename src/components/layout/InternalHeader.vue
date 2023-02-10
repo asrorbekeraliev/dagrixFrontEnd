@@ -1,18 +1,24 @@
 <template>
     <div class="tashqi">
       <div class="logo">
-        <img id="rasm" src="../../assets/dagrix.png" @click="goHome()">
+        <img id="rasm" src="../../assets/dxwhitesvg.svg" @click="goHome()">
       </div>
       <div class="bir">
         <nav class="navbar navbar-expand-lg bg-light" id="info">
-          <a class="navbar-brand" style="margin: auto;"> USERS: {{this.numberOfUsers}}</a><img src="../../assets/users.png" style="width: 2rem; margin: auto">
+          <a class="navbar-brand" style="margin: auto;"> USERS: {{this.numberOfUsers}}</a><img class="icons" src="../../assets/users.png">
         </nav>
       </div>
       <div class="ikki">
         <nav class="navbar navbar-expand-lg bg-light" id="info">
-          <a class="navbar-brand" style="margin: auto;">DEVICES: {{this.numberOfDevices}}</a><img src="../../assets/deviceico.png" style="width: 2rem; margin: auto">
+          <a class="navbar-brand" style="margin: auto;">FIELDS: {{this.numberOfDevices}}</a><img class="icons" src="../../assets/field3d.png">
         </nav>
       </div>
+      <div class="ikki">
+        <nav class="navbar navbar-expand-lg bg-light" id="info">
+          <a class="navbar-brand" style="margin: auto;">DEVICES: {{this.numberOfDevices}}</a><img class="icons" src="../../assets/deviceico.png">
+        </nav>
+      </div>
+
       <div class="dropdown">
         <button type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" style="background-color: transparent !important; border-color: transparent; margin: auto">
           <img src="../../assets/icons8-user-64.png" width="42">
@@ -84,8 +90,8 @@ export default {
 .dropdown > button > img{
   transition-duration: 0.5s;
 }
-.logo{
-
+.icons{
+  width: 2rem; margin: auto
 }
 
 .tashqi{  
@@ -102,7 +108,7 @@ export default {
   height: 150px;
 }
 .tashqi > div{
- width: 24%;
+ width: 20%;
  text-align: center;
  z-index: 99999999;
 }
@@ -110,7 +116,8 @@ export default {
   width: 25%;
 }
 .tashqi > div > img{
-  width: 250px; 
+  width: 100px;
+  padding: 3px;
   float: left;
   transition-duration: 0.5s;
   z-index: 99999999;
@@ -146,14 +153,22 @@ export default {
   }
   .tashqi > div{
     padding: 0;
-    margin: 0 20px;
+    width: 20%;
   }
-  .bir, .ikki{
-    width: 0;
-    display: none;
+  nav{
+    border-radius: 9px !important;
+    padding: 0px 2px !important;
   }
+  .navbar-brand{
+    font-size: small;
+    border-radius: 3px !important;
+  }
+  .icons{
+    width: 0rem;
+  }
+
   #rasm{
-    width: 130px;
+    width: 40px;
     float: left;
   }
   .dropdown{

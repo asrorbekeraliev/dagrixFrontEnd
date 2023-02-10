@@ -41,6 +41,7 @@
             <th scope="col">CURRENT SML (%)</th>
             <th scope="col">DAILY HISTORY</th>
             <th scope="col">REMOVE</th>
+            <th scope="col">EDIT</th>
           </tr>
           </thead>
           <tbody>
@@ -51,6 +52,7 @@
             <td>unknown</td>
             <td><router-link :to="{name: 'Charts', params: {nodeId: field.id}}"><img class="chart" src="../assets/graph.png" style="width: 50px;"></router-link></td>
             <td><button type="button" class="btn btn-danger" @click="deleteField(field.id)">Delete</button></td>
+            <td><button type="button" class="btn btn-info" @click="editField(field.id)">Edit</button></td>
           </tr>
           </tbody>
         </table>
@@ -81,24 +83,43 @@ export default {
           .then(resp=>{
             console.log(resp)
             this.fields = resp.data
+            localStorage.setItem('numberOfFields', resp.data.length)
           })
     },
-    createField(){
+    getDevices(){
+      axios.get('/node/get')
+          .then(resp=>{
+            console.log(resp.data.content.length)
+            localStorage.setItem('numberOfDevices', resp.data.content.length)
+          })
+    },
+    async createField(){
       axios.post('/field', this.registerData)
           .then(resp=>{
             console.log(resp)
           })
+
+      this.$router.go(this.$router.currentRoute);
+
       this.registerData.name="";
       this.registerData.settedMoistureLevel=0;
     },
-    deleteField(){
-
+   async deleteField(id){
+      axios.delete('/field/' + id)
+          .then(response=>{
+            console.log(response)
+          })
+     this.$router.go(this.$router.currentRoute)
+    },
+    editField(id){
+      id
     },
 
 
   },
   mounted() {
     this.getFields();
+    this.getDevices();
   }
 }
 </script>
