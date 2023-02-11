@@ -62,6 +62,7 @@ export default {
             localStorage.setItem('numberOfUsers', response.data.users);
             localStorage.setItem('numberOfDevices', response.data.devices);
             localStorage.setItem('numberOfFields', response.data.fields);
+            localStorage.setItem('loggedIn', response.data.loggedIn);
             this.$router.push('account')
           } else {
             alert("User not found")

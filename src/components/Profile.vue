@@ -1,28 +1,70 @@
 <template>
-  <div class="external">
+  <div class="external" v-if="this.loggedIn">
     <div class="bodyColor"></div>
     <div class="bodyFon"></div>
     <div class="container1">
       Profile Page
       <div class="container">
         <div>
-          <h2>Single File</h2>
-          <hr/>
-          <label>File
-            <input type="file" @change="handleFileUpload( $event )"/>
-          </label>
-          <br>
-          <button v-on:click="submitFile()">Submit</button>
+          <input type="file" @change="uploadFile()" ref="file">
+          <button @click="submitFile()">Upload!</button>
         </div>
+        <div>
+          <button @click="getFile()">GET FILE</button>
+        </div>
+        <img :src="`http://localhost:8081/api/download/${{imageHashId}}`"/>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Profile"
+  name: "Profile",
+  data(){
+    return {
+      loggedIn: localStorage.getItem('loggedIn') == 'true',
+      image: null,
+      imageHashId: ''
+    }
+  },
+  methods:{
+    submitFile() {
+      const formData = new FormData();
+      formData.append('file', this.image);
+      const headers = { 'Content-Type': 'multipart/form-data' };
+      axios.post('/upload', formData, { headers }).then((res) => {
+        res.data.files; // binary representation of the file
+        res.status; // HTTP status
+      });
+    },
+
+    uploadFile(){
+      this.image = this.$refs.file.files[0];
+      console.log(this.loggedIn)
+    },
+    getFile(){
+      axios.get('/get-hashId')
+          .then(resp=>{
+            this.imageHashId = resp.data;
+            axios.get(`/file-preview/${resp.data}`)
+                .then(response=>{
+                  console.log(response)
+                  this.image = response.data
+                })
+          })
+
+
+    }
+
+  },
+  beforeCreated(){
+    this.getFile();
+  }
+
 }
 </script>
 

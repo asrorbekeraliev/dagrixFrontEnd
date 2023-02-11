@@ -2,7 +2,10 @@
   <div class="homePage">
     <div class="container">
       <div class="bir">
-        <div class="leftside">          
+        <div class="leftside">
+          <img src="../assets/dxwhitesvg.svg" width="40%">
+          <br>
+          <br>
           <img src="../assets/dagrix.png" width="80%">
           <p id="dagrix">DIGITAL AGRICULTURE EXPLORATIONS</p>          
         </div>
@@ -90,6 +93,7 @@ export default {
     font-size: 50px;
     font-family: goodTimes;
     letter-spacing: 3px;
+    text-shadow: 0 0 20px #5236d3;
   }
   .leftside > p{
     color: blue;
