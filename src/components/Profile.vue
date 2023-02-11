@@ -12,7 +12,7 @@
         <div>
           <button @click="getFile()">GET FILE</button>
         </div>
-        <img :src="`http://localhost:8081/api/download/${{imageHashId}}`"/>
+        <img :src="image" width="100px"/>
 
       </div>
     </div>
@@ -46,18 +46,25 @@ export default {
       this.image = this.$refs.file.files[0];
       console.log(this.loggedIn)
     },
-    getFile(){
+    async getFile(){
       axios.get('/get-hashId')
           .then(resp=>{
             this.imageHashId = resp.data;
-            axios.get(`/file-preview/${resp.data}`)
-                .then(response=>{
-                  console.log(response)
-                  this.image = response.data
+            axios.get(`/file-preview/${resp.data}`, {responseType: "blob"})
+                .then(async response => {
+                  const base64data = await this.blobToData(response.data);
+                  this.image = base64data;
                 })
           })
 
 
+    },
+    blobToData(blob) {
+      return new Promise((resolve) => {
+        const reader = new FileReader()
+        reader.onloadend = () => resolve(reader.result)
+        reader.readAsDataURL(blob)
+      })
     }
 
   },
