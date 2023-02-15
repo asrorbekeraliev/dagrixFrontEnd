@@ -3,10 +3,10 @@
     <div class="container">
       <div class="bir">
         <div class="leftside">
-          <img src="../assets/dxwhitesvg.svg" width="40%">
+          <img src="../assets/dxwhitesvg.svg" width="40%" class="logo">
           <br>
           <br>
-          <img src="../assets/dagrix.png" width="80%">
+          <img src="../assets/dagrix.png" class="dagrixscript" width="80%">
           <p id="dagrix">DIGITAL AGRICULTURE EXPLORATIONS</p>          
         </div>
       </div>
@@ -104,14 +104,21 @@ export default {
     margin-bottom: 5%;
     transition: 1s;
   }
-  .leftside > img:hover{
+  .dagrixscript:hover{
     transform-style: preserve-3d;
     transform: scale(1.1);
     transition: 1s;
-    
+  }
+  .logo{
+    animation: rotation 3s infinite linear;
+  }
+  @keyframes rotation {
+    100%{
+      transform: rotateY(360deg);
+    }
   }
 
-  @font-face {
+@font-face {
                 font-family: goodTimes;
                 src: url("../fonts/good times rg.otf");
             }

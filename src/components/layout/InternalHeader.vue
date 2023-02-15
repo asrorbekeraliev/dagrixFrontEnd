@@ -10,7 +10,7 @@
       </div>
       <div class="ikki">
         <nav class="navbar navbar-expand-lg bg-light" id="info">
-          <a class="navbar-brand" style="margin: auto;">FIELDS: {{this.numberOfDevices}}</a><img class="icons" src="../../assets/field3d.png">
+          <a class="navbar-brand" style="margin: auto;">FIELDS: {{this.numberOfFields}}</a><img class="icons" src="../../assets/field3d.png">
         </nav>
       </div>
       <div class="ikki">
@@ -47,6 +47,7 @@ export default {
     return{
       numberOfUsers: null,
       numberOfDevices: null,
+      numberOfFields: null,
       name: null
     }
   },
@@ -65,6 +66,7 @@ export default {
   created() {
     this.numberOfUsers = localStorage.getItem('numberOfUsers')
     this.numberOfDevices = localStorage.getItem('numberOfDevices')
+    this.numberOfFields = localStorage.getItem('numberOfFields')
     this.name = localStorage.getItem('name')
   },
   watch:{
@@ -128,6 +130,14 @@ export default {
   transition-duration: 0.5s;
   z-index: 99999999;
   
+}
+#rasm{
+  animation: rotation 3s infinite linear;
+}
+@keyframes rotation {
+  100%{
+    transform: rotateY(360deg);
+  }
 }
 
 #info{
