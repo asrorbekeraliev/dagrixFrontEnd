@@ -35,7 +35,7 @@
           <div class="map">
             <GmapMap
                 :center="center"
-                :zoom="4"
+                :zoom="6"
                 map-style-id="satellite_labels"
                 map-type-id="satellite" 
                 :options="mapOptions"
@@ -62,7 +62,13 @@
           </GmapMap>
           </div>
           <div class="charts">
-
+            <apexchart
+                type="bar"
+                height="100%"
+                ref="chart"
+                :options="options"
+                :series="series">
+            </apexchart>
           </div>
         </div>
       </div>
@@ -86,19 +92,35 @@ export default {
     'gmap-custom-marker': GmapCustomMarker
     },
   data() {
-    return { 
+    return {
       name: localStorage.getItem('name').toUpperCase(), 
       markers: [ 
         // { lat: 41.53655717030205, lng: 64.53266240438494 }
         ],
-      center: { lat: 41.53655717030205, lng: 64.53266240438494 },
+      center: { lat: 40.77872165098297, lng: 72.39731028165971 },
       mapOptions: {
         disableDefaultUI: false,
         scrollwheel: true,
         places: true
       },
       device_numbers: [],
-      status: false
+      fieldNames: [],
+      mstatus: false,
+
+      options: {
+        chart: {
+          id: 'fields',
+          foreColor: "#ccc",
+        },
+        xaxis: {
+          type: 'text',
+          categories: ['Apple Garden 1', 'Flowers Garden', 'Terrace Flowers']
+        }
+      },
+      series: [{
+        name: 'Moisture Level',
+        data: [35, 27, 43]
+      }]
     };
   },
 
@@ -113,8 +135,6 @@ export default {
           this.device_numbers.push(response.data.content[index].id)
           
         }
-          console.log(response.data)
-          
       })
     },
     makeChart(index){
@@ -133,19 +153,44 @@ export default {
       });
       console.log(poly);
       this.$refs.map.$mapObject.data.add({geometry: new gmapApi.maps.Data.Polygon([this.poly])});
-    }
+    },
 
+    async getFieldSoilMoistureLevels(){
+      await axios.get('/parameter/avaragesm')
+          .then(resp=>{
+            localStorage.setItem('sm', JSON.stringify(resp.data))
+          })
+    },
+
+    async getFields(){
+      await axios.get('/field')
+          .then(response=>{
+            for (let ind in response.data)
+              this.fieldNames.push(response.data[ind].name)
+          })
+      localStorage.setItem('fieldNames', JSON.stringify(this.fieldNames))
+      this.series[0].data = JSON.parse(localStorage.getItem('sm'))
+      this.options.xaxis.categories = JSON.parse(localStorage.getItem('fieldNames'))
+      this.mstatus = true;
+      console.log(this.options.xaxis.categories)
+      console.log(this.series[0].data)
+    }
   },
 
   created(){
     this.getInfo();
+    /*
+    this.getFieldSoilMoistureLevels();
+    this.getFields();
+
+     */
   },
 
   computed: {
        google: gmapApi
    },
    mounted() {
-    
+
    },
    
 
@@ -210,13 +255,12 @@ export default {
 .map{
   transition: 0.5s;
   height: 75%;
-  width: 45%;
+  width: 50%;
   z-index: 100;
   margin-right: 2%;
 }
 
 .map:hover{
-  transform: scale(1.1);
   border-color: transparent;
   width: 50%;
   transition: 0.5s;
@@ -226,8 +270,8 @@ export default {
 
 .charts{
   background-color: transparent;
-  border: solid 1px white;
-  border-radius: 5%;
+  backdrop-filter:blur(4px) brightness(150%) contrast(90%);
+  border: solid 1px;
   transition: 0.5s;
   height: 75%;
   width: 45%;
@@ -236,7 +280,6 @@ export default {
 
 .charts:hover{
   border-color: transparent;
-  transform: scale(1.1);
   transition: 0.5s;
   box-shadow: 0 19px 38px rgba(255, 255, 255, 0.3), 0 15px 12px rgba(255, 255, 255, 0.22);
   z-index: 110;

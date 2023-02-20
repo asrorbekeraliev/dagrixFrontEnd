@@ -39,7 +39,7 @@
             <th scope="col">FIELD NAME</th>
             <th scope="col">SETTED SML (%)</th>
             <th scope="col">CURRENT SML (%)</th>
-            <th scope="col">DAILY HISTORY</th>
+<!--            <th scope="col">DAILY HISTORY</th>-->
             <th scope="col">REMOVE</th>
             <th scope="col">EDIT</th>
           </tr>
@@ -50,7 +50,7 @@
             <td>{{field.name}}</td>
             <td>{{field.settedMoistureLevel}}</td>
             <td>unknown</td>
-            <td><router-link :to="{name: 'Charts', params: {nodeId: field.id}}"><img class="chart" src="../assets/graph.png" style="width: 50px;"></router-link></td>
+<!--            <td><router-link :to="{name: 'Charts', params: {nodeId: field.id}}"><img class="chart" src="../assets/graph.png" style="width: 50px;"></router-link></td>-->
             <td><button type="button" class="btn btn-danger" @click="deleteField(field.id)">Delete</button></td>
             <td><button type="button" class="btn btn-info" @click="editField(field.id)">Edit</button></td>
           </tr>

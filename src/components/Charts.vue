@@ -1,6 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="body">
+    <div class="bodyColor"></div>
+    <div class="bodyFon"></div>
     <InternalHeader/>
     <H1>Parameters of Wireless Node: {{nodeId}}</H1>
     <br>
@@ -29,7 +31,6 @@ export default {
   data() {
     return {
       status: false,
-      
       chartOptions: {
         chart: {
           id: "Parameters_of_device_number_" + this.nodeId,
@@ -167,12 +168,30 @@ export default {
   transform: scale(1.1);
   }
   .body {
-    background: #303e8b;
-    height: 1800px;
+
   }
   h1 {    
     margin-top: 30px;
     color: azure;
+  }
+  .bodyColor{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(6, 0, 128);
+    opacity: 0.6;
+    z-index: -10;
+  }
+
+  .bodyFon{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../assets/chartbackg.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -50;
   }
 
 
