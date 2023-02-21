@@ -61,7 +61,7 @@
                 <gmap-polygon :paths="paths"></gmap-polygon>         
           </GmapMap>
           </div>
-          <div class="charts">
+          <div class="charts" v-if="mstatus">
             <apexchart
                 type="bar"
                 height="100%"
@@ -114,12 +114,12 @@ export default {
         },
         xaxis: {
           type: 'text',
-          categories: ['Apple Garden 1', 'Flowers Garden', 'Terrace Flowers']
+          categories: []
         }
       },
       series: [{
         name: 'Moisture Level',
-        data: [35, 27, 43]
+        data: []
       }]
     };
   },
@@ -171,7 +171,10 @@ export default {
       localStorage.setItem('fieldNames', JSON.stringify(this.fieldNames))
       this.series[0].data = JSON.parse(localStorage.getItem('sm'))
       this.options.xaxis.categories = JSON.parse(localStorage.getItem('fieldNames'))
-      this.mstatus = true;
+      setTimeout(()=>{
+        this.mstatus = true;
+      }, 100)
+
       console.log(this.options.xaxis.categories)
       console.log(this.series[0].data)
     }
@@ -179,11 +182,9 @@ export default {
 
   created(){
     this.getInfo();
-    /*
     this.getFieldSoilMoistureLevels();
     this.getFields();
 
-     */
   },
 
   computed: {
